@@ -8,11 +8,10 @@ class TodoList extends Component {
       userinput: "",
       taskArray: [
         {
-          item:'',
-          initial:true,
-        }
+          item: '',
+          initial: true,
+        },
       ],
-      
     };
   }
   handleChange = (e) => {
@@ -22,9 +21,11 @@ class TodoList extends Component {
   };
   add = (f) => {
     this.setState({
-      taskArray: [...this.state.taskArray, {item:this.state.userinput,initial:false}],
-      userinput: '',
-      
+      taskArray: [
+        ...this.state.taskArray,
+        { item: this.state.userinput, initial: false },
+      ],
+      userinput: "",
     });
   };
 
@@ -34,14 +35,13 @@ class TodoList extends Component {
     });
   };
 
-    check = () => {
-      this.setState({
-        taskArray:this.state.taskArray.map(e=>{
-          var aux=Object.assign({},e);
-          aux.initial=false ? aux.initial=true : aux.initial=false;
-        })    
-      });
-    };
+  check = (par) => {
+    this.setState({
+      taskArray: this.state.taskArray.map((el) =>
+        par.item === el.item ? { ...el, initial: !el.initial } : el
+      ),
+    });
+  };
   render() {
     return (
       <div className="todo">
